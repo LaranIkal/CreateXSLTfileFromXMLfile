@@ -1,0 +1,32 @@
+
+How I generated the XSLT file with the help of ChatGPT and GitHub Copilot.
+
+These are the questions I asked to ChatGPT to get the XSLT file, *The response is the XSLT file:
+===>>> Create the appropriate XSLT to transform the next .xml file to create a .csv file
+===>>> make the XSLT more humanly generated
+===>>> I want the output to Excel
+===>>> There are multiple Organization_Data fields
+
+The conditions:
+===>>> Include this conditions: For Employee_Status only print A for Active and L for On Leave, and add leading zeros to $costCenter when it is less than 8 chars
+
+Additional fields and requirements:
+===>>> Add full $legal as first field to the left of the file
+===>>> each field value must be double quoted, there are some that have commas
+===>>> I am processing the XSLT in Java, I am getting: line 121: Required attribute 'select' is missing.
+	The cause wass: Java's default XSLT 1.0 processors (like Xalan) do not support 1 to $padCount, which is XSLT 2.0 syntax.
+	
+===>>> rewrite the complete XSLT
+===>>> include this Selection Criteria: include only rows where Employee_Status are Active, Company begins with 'ESI' or (Company = 'EUK' And Cost Center = ELGBR10121775)
+===>>> Include this conditions: For Employee_Status only print A for Active and L for On Leave, and add leading zeros to $costCenter when it is less than 8 chars
+
+I was only getting the Active employees, so I went to Github Copilot and asked it:
+
+===>>> I have this xslt file:(pasted all my xslt file)
+I need to include the Employee_Status OnLeave 
+
+Copilot told me I just needed to fix the line below in my xslt file and add the OnLeave part:
+<xsl:for-each select="//ws:Worker[ws:Status/ws:Employee_Status = 'Active' or ws:Status/ws:Employee_Status = 'OnLeave']">
+
+The file was not exactly as needed but I just changed my variables.
+
