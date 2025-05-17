@@ -11,6 +11,7 @@ Description:
 
 The process extracts the data from the xml file and gets the csv output file 
 by using the xslt file and the xslt processor written in Java.
+To create the Java xslt processor I took ideas from: https://gist.github.com/serge1/9307868
 
 Getting started:
 
